@@ -1,4 +1,4 @@
-Structure 
+# Structure 
 1.Introduction
 - Motivation (general information)
 - Objective of the project 
