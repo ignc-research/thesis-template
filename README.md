@@ -19,7 +19,7 @@ You are free to choose any template, style and design of your thesis/report as l
     * The first and second examinors name (for a thesis)
     * The date of submission (must be the same date that you submit the thesis!)
 
-We recommend to use an overleaf template.
+We recommend to use an overleaf template. An example template can be found in [overleaf-template](overleaf-template)
 ### Structure
 See [structure.md](structure.md)
 
