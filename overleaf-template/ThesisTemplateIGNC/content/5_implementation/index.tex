@@ -1,0 +1,21 @@
+\chapter{Implementation}
+This section will show in more detail how the conceptual design was implemented. First, the already existing simulation modules of arena-rosnav upon which this project’s work depends will be introduced. Then the data generation, behavior cloning, scenario generation and deep reinforcement learning modules will be presented.
+
+The simulation environment in arena-rosnav is flatland. It manages the map as well as the positions and velocities of the robot and obstacles. It is integrated with ROS, so information about the state of the simulation is published and consumed over ROS topics. In particular, we will be interested in the following topics:
+
+\begin{itemize}
+    \item /cmd\_vel: publishes the velocity of the robot.
+    \item /odom: publishes current position and pose of the robot.
+    \item /scan: publishes current laser scan.
+    \item /move\_base\_simple/goal: publishes the current coordinates of the subgoal. Consumed by move\_base planner like MPC. This was used for recording MPC data.
+    \item /subgoal: publishes the current coordinates of the subgoal. Consumed by DRL planners. This was used for recording human expert data.
+\end{itemize}
+
+Another important component built into arena-rosnav is the ObservationCollector, which makes observation data available to other modules. It subscribes to the ROS topics above and can return synchronized laser scan and goal in robot pose observations via the function get\_observations(). It interfaces with the recording module via FlatlandEnv, an OpenAI Gym environment.
+
+Finally, the Task module generates the navigation task for each recording and training episode, which can be random tasks or scenario tasks. Random tasks consist of a random starting position of the robot, a random goal as well as random positions for the dynamic obstacles. The number of dynamic obstacles is determined by the current stage in the training curriculum. Scenario tasks are generated according to a specification stored in a json file. This includes specific starting and goal positions of the robot and positions of the dynamic obstacles. Additionally, it is possible to specify waypoints that determine exactly where the dynamic obstacles move and a wait timer, which makes the dynamic obstacle stand in place before beginning its motion along the waypoints. The wait timer will be particularly important in the experiments with training specific behaviors.
+
+\input{content/5_implementation/section1}
+\input{content/5_implementation/section2}
+\input{content/5_implementation/section3}
+\input{content/5_implementation/section4}

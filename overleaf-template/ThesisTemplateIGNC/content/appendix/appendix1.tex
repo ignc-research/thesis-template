@@ -1,0 +1,73 @@
+\chapter{Appendix}\label{appdx1}% chktex 8
+\begin{table}[!h]
+ \centering
+ \captionof{table}{training\_curriculum\_map1small}\label{table:training-curriculum}
+ \begin{tabular}{|l|l|}
+ \hline
+ \textbf{Training Stage} & \textbf{Number of dynamic obstacles} \\ \hline
+ 1 & 0 \\ \hline
+ 2 & 4 \\ \hline
+ 3 & 6 \\ \hline
+ 4 & 8 \\ \hline
+ 5 & 10 \\ \hline
+ \end{tabular}
+ \bigskip
+\end{table}
+
+\begin{table}[!h]
+ \centering
+ \captionof{table}{Hyperparameters for MPC-pretrained DRL Training}\label{table:hyperparameters-mpc}
+ \begin{tabular}{|l|l|}
+ \hline
+ \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+ robot & myrobot \\ \hline
+ batch\_size & 24000 \\ \hline
+ gamma & 0.99 \\ \hline
+ n\_steps & 1000 \\ \hline
+ ent\_coef & 0.005 \\ \hline
+ learning\_rate & 0.0003 \\ \hline
+ vf\_coef & 0.22 \\ \hline
+ max\_grad\_norm & 0.5 \\ \hline
+ gae\_lambda & 0.95 \\ \hline
+ m\_batch\_size & 15 \\ \hline
+ n\_epochs & 3 \\ \hline
+ clip\_range & 0.22 \\ \hline
+ train\_max\_steps\_per\_episode & 500 \\ \hline
+ eval\_max\_steps\_per\_episode & 650 \\ \hline
+ goal\_radius & 0.25 \\ \hline
+ reward\_fnc & rule\_00 \\ \hline
+ discrete\_action\_space & false \\ \hline
+ normalize & false \\ \hline
+ task\_mode & staged \\ \hline
+ \end{tabular}
+ \bigskip
+\end{table}
+
+\begin{table}[!h]
+ \centering
+ \captionof{table}{Hyperparameters for baseline and human expert-pretrained DRL Training}\label{table:hyperparameters-human}
+ \begin{tabular}{|l|l|}
+ \hline
+ \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+ robot & myrobot \\ \hline
+ batch\_size & 24000 \\ \hline
+ gamma & 0.99 \\ \hline
+ n\_steps & 1000 \\ \hline
+ ent\_coef & 0.005 \\ \hline
+ learning\_rate & 0.0003 \\ \hline
+ vf\_coef & 0.22 \\ \hline
+ max\_grad\_norm & 0.5 \\ \hline
+ gae\_lambda & 0.95 \\ \hline
+ m\_batch\_size & 15 \\ \hline
+ n\_epochs & 3 \\ \hline
+ clip\_range & 0.22 \\ \hline
+ train\_max\_steps\_per\_episode & 600 \\ \hline
+ eval\_max\_steps\_per\_episode & 650 \\ \hline
+ goal\_radius & 0.25 \\ \hline
+ reward\_fnc & rule\_04 \\ \hline
+ discrete\_action\_space & false \\ \hline
+ normalize & false \\ \hline
+ task\_mode & staged \\ \hline
+ \end{tabular}
+ \bigskip
+\end{table}

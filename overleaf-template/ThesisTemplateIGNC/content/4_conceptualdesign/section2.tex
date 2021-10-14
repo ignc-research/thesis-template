@@ -1,0 +1,10 @@
+\section{Requirements}
+The following requirements must be met:
+\begin{enumerate}
+    \item The recording script must record the data that is specified by the agent’s input.
+    \item The recording script must record the data that is specified by the agent’s output.
+    \item The observations and actions that are recorded must be synchronized.
+    \item The recording script triggers the scenarios generated in the simulation. It must be possible to pass the necessary parameters like training stage or scenario json file to the script.
+    \item The recording script must only record good demonstrations. If the robot collides in the simulation, this data should not be recorded.
+    \item The expert module must provide an interface for a human expert to steer the robot in random and specified scenarios. It must also make it possible to select an expert planner to steer the robot, as this lowers the amount of development time that is spent generating training data.
+\end{enumerate}

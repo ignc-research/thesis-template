@@ -1,0 +1,9 @@
+\section{Behavior Cloning with MPC Data}
+The first experiment used a large dataset of expert demonstrations recorded from the MPC planner. It consists of 2,955 episodes with a combined total of 111,205 timesteps across all five training stages. These were recorded in map\_small, a rectangular map without static obstacles. The process of recording the demonstrations took an estimated 10 hours.
+\\\\
+\noindent During this experiment, a number of important lessons were learned for the following experiments in this project. 
+\begin{enumerate}
+    \item The maximum number of timesteps for each episode during training and evaluation must be the same as the maximum number of timesteps allowed while recording the expert.
+    \item The maximum timesteps must also be suitable for the size of the training map used.
+    \item Ensure the agent can solve the navigation task with any starting angle to the goal to avoid the problem of sparse rewards.
+\end{enumerate}

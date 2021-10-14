@@ -1,0 +1,33 @@
+%%%% Time-stamp: <2017-02-14 16:01:12 vk>
+%% ========================================================================
+%%%% Disclaimer
+%% ========================================================================
+%%
+%% created by
+%%
+%%      Karl Voit, and Matthias Wölbitsch
+%%
+%%
+%% code for the date and signature fields adapted from
+%% http://tex.stackexchange.com/a/20562
+
+
+\newcommand{\textfield}[2]{
+  \vbox{
+    \hsize=#1\kern3cm\hrule\kern1ex
+    \hbox to \hsize{\strut\hfil\footnotesize#2\hfil}%chktex 1
+  }
+}
+
+\chapter*{Affidavit}
+\foreignlanguage{ngerman}{%
+I hereby declare that the thesis submitted is my own unaided work. All direct or indirect sources used are acknowledged as references.
+
+\noindent\emph{Hiermit erkläre ich, dass ich die vorliegende Arbeit selbstständig und eigenhändig sowie ohne unerlaubte fremde Hilfe und ausschließlich unter Verwendung der aufgeführten Quellen und Hilfsmittel angefertigt habe.}}
+
+
+\textfield{4cm}{Berlin, August 19, 2021}%chktex 1
+
+\newpage
+\newpage\null\thispagestyle{empty}\newpage
+

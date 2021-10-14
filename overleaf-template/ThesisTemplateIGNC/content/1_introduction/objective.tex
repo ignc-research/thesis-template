@@ -1,0 +1,9 @@
+\section{Objective}
+The contributions of this project are the development of a pipeline to perform all steps necessary in behavior cloning (BC), a specific type of IL, and integrating it into arena-rosnav \citep{rosnav}, a DRL training and testing environment for autonomous navigation in collaborative environments. Specifically, the following results were achieved:
+\begin{enumerate}
+\item Implementation of a module for recording demonstrations from a ROS move\_base planner such as MPC in randomized scenarios.
+\item Implementation of a module for recording demonstrations from a human expert, by letting a user steer the agent using a keyboard in randomized scenarios and in hand-crafted scenarios in which specific behaviors are required.
+\item Implementation of a training script to train an agent using previously recorded expert demonstrations.
+\item Experiments to accelerate DRL with behavior cloning: pretraining of an agent with expert demonstrations in randomized scenarios, followed by DRL, and comparison of its training time with an agent trained only using DRL.
+\item Experiments to teach an agent a behavior needed in a specific situation: pretraining of an agent on expert demonstrations in a scenario requiring a specific behavior, and comparison of the learned behavior with the behavior of an agent trained only with DRL.
+\end{enumerate}

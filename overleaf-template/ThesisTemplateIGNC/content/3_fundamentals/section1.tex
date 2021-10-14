@@ -1,0 +1,13 @@
+% Checked with grammarly
+\section{Supervised Learning}
+Supervised learning is the most common technique used to train neural networks, where a non-linear function between inputs and outputs is learned from examples. Following \citep{lapan}, we will outline the basics of supervised learning.
+\\\\\noindent 
+Using a training dataset of labeled examples, pairs of inputs, x, and outputs, y, neural network (NN) parameters are optimized so that the output of the NN for each input is as close as possible to the correct output. In this project, the outputs which will be predicted are the actions of the robot, and the inputs are the observations of the robot. These are continuous quantities, which makes this a regression problem.
+\\\\\noindent 
+How close the output is to the label is measured using the loss function. In this project, the mean-squared error loss will be used, which is the most common choice for regression problems:
+\[MSE = \dfrac{1}{N}\sum_{i=1}^{i=N}(y_{i, predicted} – y_{i, labelled})^2\]
+Typically, this loss is computed in mini-batches, small numbers of samples drawn from the training dataset. The parameters are then optimized using stochastic gradient descent to minimize the loss function.
+\\\\\noindent 
+A potential problem with this procedure is overfitting, where the network learns to predict the training set well but fails to generalize to unseen examples. The solution is to use a test set, which is not used to optimize the networks, but is used to monitor the performance on unseen examples.
+\\\\\noindent 
+The test and training losses are used in early stopping to avoid overfitting. This is a common technique, where training is stopped if the test loss starts increasing while the training loss continues to drop. This indicates that the network is overfitting to details of the training set which are reducing effectiveness in the test set.

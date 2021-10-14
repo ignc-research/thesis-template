@@ -1,0 +1,22 @@
+% Checked with grammarly
+\section{Reinforcement Learning}
+Reinforcement Learning (RL) is a technique to train an agent by trial and error, rather than from labelled examples \citep{lapan}. Following \citep{lapan}, we will outline reinforcement learning in the following.
+
+\myfig{DRL_300.png}%% filename
+ {width=0.6\textwidth}%% width/height
+ {The core entities in reinforcement learning and their relationships. Based on a figure in \citep{lapan}.}%% caption
+ {DRL}%% optional (short) caption for list of figures
+ {fig:drl}%% label
+ \FloatBarrier
+\noindent The core entities in RL are agents and environments, which are connected through rewards, observations and actions, as can be seen in figure \ref{fig:drl}. The environment consists of all possible states of a system, such as the positions of robots and obstacles. An observation is a full or partial description of that state at a given moment in time.
+\\\\\noindent 
+The agent is an entity that can compute an action to take in the environment given a current observation using a function called the policy. In deep reinforcement learning (DRL), this policy is a neural network.
+Following each action, the agent receives a reward, computed by a reward function, which quantifies how good or bad the action was, given the state of the environment captured by the observation.
+\\\\\noindent 
+More formally, this is a Partially Observable Markov Decision Process, and the agent learns to maximize expected returns by adjusting the weights of its neural networks.
+The expected return is given by $\mathbf{E}[\sum_{t=0}^{\infty}\gamma^{t}r_{t}]$, where $r_{t}$ is the reward given at time $t$ and $\gamma$ is the discount factor.
+t runs over all timesteps in the episode. Episodes are finite time-series of the agent’s experience in the environment. For example, this can be a series of observations, corresponding actions and rewards the agent made while driving from a starting position to a goal: $\{(o_0, a_0, r_0), (o_1, a_1, r_1), … (o_n, a_n, r_n)\}$. The terms trajectory and rollout are often used interchangeably with episode.
+The discount factor is less than 1, which effects that rewards at the starts of episodes are more valuable than rewards in the future.
+\\\\\noindent 
+The agent is placed in the environment repeatedly to gather experience in episodes and tune its policy to maximize expected returns. Thus, the agent learns by trial and error.
+An important problem in RL to note is called exploration versus exploitation. Exploration refers to the agent exploring its environment, which requires trial and error, and exploitation refers to the agent acting according to its policy, which is its best representation of its target behavior. Too much exploration risks low rewards, slow convergence and unlearning of a useful policy. Too much exploitation risks converging to a local optimum of the policy, resulting in lower rewards.

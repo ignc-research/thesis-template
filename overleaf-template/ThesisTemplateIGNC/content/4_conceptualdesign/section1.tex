@@ -1,0 +1,29 @@
+\section{System Design}
+The goal of this project is to implement a pipeline for behavior cloning with the intention of accelerating DRL training runs and training agents to perform specific tasks.
+\\\\\noindent 
+Presently, a DRL training in arena-rosnav has the following conceptual workflow: the DRL training module begins with an agent with randomly initialized weights, and through interaction with its simulated environment the agent improves, producing a set of trained weights.
+\\\\\noindent 
+In each training iteration, a series of rollouts is generated: first, for each rollout a random task is generated. This consists of a random starting position of the robot, a random goal and randomly moving dynamic obstacles spawned at random positions. The agent interacts with the environment using the current state of its neural network, computing an action for each observation. These observation and action pairs are then stored in a rollout buffer. The PPO algorithm uses the contents of the rollout buffer as training data to optimize the neural network’s parameters. After each training iteration, the contents of the rollout buffer are discarded.
+\\\\\noindent 
+In the proposed system, this workflow will be extended with modules for data generation and behavior cloning, seen in figure \ref{fig:system-design}.
+
+\myfig{system_design_300.png}%% filename
+ {width=1.0\textwidth}%% width/height
+ {The conceptual design of the behavior cloning system. Proposed additions to arena-rosnav are bounded in containers on the left. These are the Data Generation module and the Behavior Cloning module.}%% caption
+ {System Design}%% optional (short) caption for list of figures
+ {fig:system-design}%% label
+ \FloatBarrier
+ 
+The data generation module will enable an expert to steer the robot in a simulated environment, and record these as rollouts to be used as expert demonstrations.
+\\\\\noindent 
+The behavior cloning module will take the expert demonstrations as input and perform behavior cloning: given an agent as input, it will perform supervised learning to produce a neural network with weights that can reproduce the behavior of the expert.
+\\\\\noindent 
+Two types of training are envisioned: pretraining and fine-tuning. If the agent used as input is randomly initialized, like the agents used in arena-rosnav’s DRL module, and the training data consists of randomly generated episodes, we will call the procedure pretraining, and the weights produced pre-trained weights. If the agent used as input is one that was already trained with arena-rosnav’s DRL module, and the training data consists of demonstrations in scenarios requiring specific behaviors, we will call the procedure fine-tuning, and the produced weights fine-tuned weights. The pretrained weights produced by the behavior cloning module will be able to be used as a starting point for continued DRL with arena-rosnav’s existing DRL training module. The fine-tuned weights can be deployed in a simulation environment directly.
+\\\\\noindent 
+The extension contains four components:
+\begin{itemize}
+    \item \textbf{Expert}: the expert is an entity like a motion planner, a human or even a previously trained DRL agent that demonstrates which action should be taken in a given situation
+    \item \textbf{Simulation}: the simulation generates scenarios in a map, consisting of a random starting position and goal for the robot, as well as random dynamic obstacles. It will compute the observations the robot sees at every timestep, and takes the action chosen by the expert to move the robot. At each timestep, it also updates the positions of all the dynamic obstacles.
+    \item \textbf{Recording}: the recording script collects the observations and actions and saves them in a data structure. It also manages what kind of scenario the simulation will generate, either one with random positions and obstacles, or with positions and obstacles specified in a json file.
+    \item \textbf{Behavior Cloning}: the behavior cloning module is a script that performs supervised learning. It takes the data recorded by the recording script and fits the weights of an agent to the data. It can either train a randomly initialized agent or load one that has already been trained. The former is used to accelerate DRL runs, the latter is used to train an agent for a specific task.
+\end{itemize}
