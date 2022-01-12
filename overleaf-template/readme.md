@@ -4,6 +4,7 @@ We recommend to use Overleaf.com for collaborative latex document editing.
 * To import the template to Overleaf, just create a new project and select 'upload project'
 * Select the thesis template .zip file and drag and drop it to overleaf
 
+
 # Error Handling
 If you encounter such an error when compiling the notebook for the first time:
 ```text
@@ -18,3 +19,4 @@ You may need to change your settings like this:
 
 1. Go to `Menu > Compiler` make sure _`pdfLaTeX`_ is selected
 2. Go to `Menu > Main Document` make sure _`main.tex`_ is selected
+
